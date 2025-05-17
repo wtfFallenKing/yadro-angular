@@ -31,18 +31,10 @@ import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 
 
-import { IconDefinition } from '@ant-design/icons-angular';
-import * as AllIcons from '@ant-design/icons-angular/icons';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 
-const antDesignIcons = AllIcons as {
-  [key: string]: IconDefinition;
-};
-const icons: IconDefinition[] = Object.keys(antDesignIcons).map(
-  (key) => antDesignIcons[key]
-);
 
 registerLocaleData(ru);
 
@@ -66,7 +58,7 @@ registerLocaleData(ru);
     NzTableModule,
     NzDividerModule,
     NzButtonModule,
-    NzIconModule.forRoot(icons),
+    NzIconModule,
     NzFormModule,
     NzInputModule,
     NzMessageModule,
