@@ -1,0 +1,163 @@
+<nz-spin [nzSpinning]="isLoading">
+  <nz-page-header (nzBack)="cancel()" nzBackIcon [nzTitle]="pageTitle">
+  </nz-page-header>
+
+  <form nz-form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="user-form">
+    <nz-card nzTitle="Основная информация">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired nzFor="name">Имя</nz-form-label>
+        <nz-form-control [nzSpan]="14" [nzErrorTip]="nameErrorTpl">
+          <input nz-input formControlName="name" id="name" placeholder="Полное имя" />
+          <ng-template #nameErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')">Имя обязательно для заполнения.</ng-container>
+            <ng-container *ngIf="control.hasError('minlength')">Имя должно содержать не менее 3 символов.</ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired nzFor="username">Имя пользователя</nz-form-label>
+        <nz-form-control [nzSpan]="14" [nzErrorTip]="usernameErrorTpl">
+          <input nz-input formControlName="username" id="username" placeholder="Имя пользователя" />
+          <ng-template #usernameErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')">Имя пользователя обязательно.</ng-container>
+            <ng-container *ngIf="control.hasError('minlength')">Имя пользователя должно содержать не менее 3 символов.</ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired nzFor="email">Email</nz-form-label>
+        <nz-form-control [nzSpan]="14" [nzErrorTip]="emailErrorTpl">
+          <input nz-input formControlName="email" id="email" type="email" placeholder="user@example.com" />
+          <ng-template #emailErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')">Email обязателен.</ng-container>
+            <ng-container *ngIf="control.hasError('email')">Неверный формат email.</ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired nzFor="phone">Телефон</nz-form-label>
+        <nz-form-control [nzSpan]="14" [nzErrorTip]="phoneErrorTpl">
+          <input nz-input formControlName="phone" id="phone" placeholder="например, 1-770-736-8031 x56442" />
+          <ng-template #phoneErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')">Телефон обязателен.</ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzFor="website">Веб-сайт</nz-form-label>
+        <nz-form-control [nzSpan]="14" [nzErrorTip]="websiteErrorTpl">
+          <input nz-input formControlName="website" id="website" placeholder="например, hildegard.org" />
+          <ng-template #websiteErrorTpl let-control>
+              <ng-container *ngIf="control.hasError('pattern')">Неверный формат веб-сайта.</ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-card>
+
+    <div formGroupName="address">
+      <nz-card nzTitle="Адресная информация" class="form-card">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6" nzRequired nzFor="street">Улица</nz-form-label>
+          <nz-form-control [nzSpan]="14" [nzErrorTip]="streetErrorTpl">
+            <input nz-input formControlName="street" id="street" placeholder="Название улицы" />
+            <ng-template #streetErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">Улица обязательна.</ng-container>
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6" nzFor="suite">Офис/кв.</nz-form-label>
+          <nz-form-control [nzSpan]="14">
+            <input nz-input formControlName="suite" id="suite" placeholder="Номер офиса или квартиры" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6" nzRequired nzFor="city">Город</nz-form-label>
+          <nz-form-control [nzSpan]="14" [nzErrorTip]="cityErrorTpl">
+            <input nz-input formControlName="city" id="city" placeholder="Город" />
+            <ng-template #cityErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">Город обязателен.</ng-container>
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6" nzRequired nzFor="zipcode">Почтовый индекс</nz-form-label>
+          <nz-form-control [nzSpan]="14" [nzErrorTip]="zipcodeErrorTpl">
+            <input nz-input formControlName="zipcode" id="zipcode" placeholder="Почтовый индекс" />
+            <ng-template #zipcodeErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">Почтовый индекс обязателен.</ng-container>
+                <ng-container *ngIf="control.hasError('pattern')">Неверный формат индекса.</ng-container>
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+
+        <div formGroupName="geo">
+            <nz-form-item>
+                <nz-form-label [nzSpan]="6" nzRequired nzFor="lat">Широта</nz-form-label>
+                <nz-form-control [nzSpan]="14" [nzErrorTip]="latErrorTpl">
+                    <input nz-input formControlName="lat" id="lat" placeholder="-37.3159" />
+                     <ng-template #latErrorTpl let-control>
+                        <ng-container *ngIf="control.hasError('required')">Широта обязательна.</ng-container>
+                        <ng-container *ngIf="control.hasError('pattern')">Неверный формат широты.</ng-container>
+                    </ng-template>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label [nzSpan]="6" nzRequired nzFor="lng">Долгота</nz-form-label>
+                <nz-form-control [nzSpan]="14" [nzErrorTip]="lngErrorTpl">
+                    <input nz-input formControlName="lng" id="lng" placeholder="81.1496" />
+                     <ng-template #lngErrorTpl let-control>
+                        <ng-container *ngIf="control.hasError('required')">Долгота обязательна.</ng-container>
+                        <ng-container *ngIf="control.hasError('pattern')">Неверный формат долготы.</ng-container>
+                    </ng-template>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+      </nz-card>
+    </div>
+
+    <div formGroupName="company">
+      <nz-card nzTitle="Информация о компании" class="form-card">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6" nzRequired nzFor="companyNameField">Название компании</nz-form-label>
+          <nz-form-control [nzSpan]="14" [nzErrorTip]="companyNameErrorTpl">
+            <input nz-input formControlName="name" id="companyNameField" placeholder="Название компании" />
+            <ng-template #companyNameErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">Название компании обязательно.</ng-container>
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6" nzFor="catchPhrase">Слоган</nz-form-label>
+          <nz-form-control [nzSpan]="14">
+            <input nz-input formControlName="catchPhrase" id="catchPhrase" placeholder="Слоган компании" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6" nzFor="bs">Сфера деятельности</nz-form-label>
+          <nz-form-control [nzSpan]="14">
+            <input nz-input formControlName="bs" id="bs" placeholder="Сфера деятельности компании" />
+          </nz-form-control>
+        </nz-form-item>
+      </nz-card>
+    </div>
+
+    <nz-form-item class="form-actions">
+      <nz-form-control [nzSpan]="14" [nzOffset]="6">
+        <button nz-button type="button" (click)="cancel()" style="margin-right: 8px;">Отмена</button>
+        <button nz-button nzType="primary" [disabled]="userForm.invalid || isLoading">
+          {{ isEditMode ? 'Обновить' : 'Создать' }}
+        </button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</nz-spin>

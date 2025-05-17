@@ -1,0 +1,26 @@
+.user-list-container {
+  padding: 20px;
+}
+
+.filter-controls {
+  margin-bottom: 20px;
+  .ant-input-search-button {
+    height: 32px;
+  }
+}
+
+.table-pagination {
+  margin-top: 16px;
+  text-align: right;
+}
+
+nz-table {
+  margin-top: 16px;
+}
+
+td button {
+  margin-right: 4px;
+  &:last-child {
+    margin-right: 0;
+  }
+}

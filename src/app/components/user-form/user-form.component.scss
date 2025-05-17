@@ -1,0 +1,21 @@
+.user-form {
+  max-width: 800px;
+  margin: auto;
+}
+
+.form-card {
+  margin-top: 16px;
+}
+
+.form-actions {
+  margin-top: 24px;
+  text-align: right;
+   nz-form-control {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+nz-page-header {
+  margin-bottom: 16px;
+}

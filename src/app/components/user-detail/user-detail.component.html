@@ -1,0 +1,39 @@
+<nz-spin [nzSpinning]="isLoading">
+  <div *ngIf="user; else notFoundOrLoading">
+    <nz-page-header (nzBack)="goBack()" nzBackIcon nzTitle="Детали пользователя">
+      <nz-page-header-extra>
+        <button nz-button (click)="goBack()">Назад к списку</button>
+        <button nz-button nzType="primary" (click)="editUser()">Редактировать</button>
+      </nz-page-header-extra>
+    </nz-page-header>
+
+    <nz-card [nzTitle]="user.name + ' (@' + user.username + ')'">
+      <nz-descriptions nzBordered [nzColumn]="1">
+        <nz-descriptions-item nzTitle="ID">{{ user.id }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Email">{{ user.email }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Телефон">{{ user.phone }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Веб-сайт">
+          <a [href]="'http://' + user.website" target="_blank">{{ user.website }}</a>
+        </nz-descriptions-item>
+
+        <nz-descriptions-item nzTitle="Адрес" [nzSpan]="2">
+          {{ user.address.street }}, {{ user.address.suite }}, {{ user.address.city }}, {{ user.address.zipcode }}
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Геокоординаты" [nzSpan]="2">
+          Шир: {{ user.address.geo.lat }}, Дол: {{ user.address.geo.lng }}
+        </nz-descriptions-item>
+
+        <nz-descriptions-item nzTitle="Компания">{{ user.company.name }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Слоган">"{{ user.company.catchPhrase }}"</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Сфера деятельности" [nzSpan]="2">{{ user.company.bs }}</nz-descriptions-item>
+      </nz-descriptions>
+    </nz-card>
+  </div>
+</nz-spin>
+
+<ng-template #notFoundOrLoading>
+  <div *ngIf="!isLoading" class="not-found-message">
+    Пользователь не найден или произошла ошибка.
+    <button nz-button (click)="goBack()" style="margin-top: 10px;">Назад к списку</button>
+  </div>
+</ng-template>
